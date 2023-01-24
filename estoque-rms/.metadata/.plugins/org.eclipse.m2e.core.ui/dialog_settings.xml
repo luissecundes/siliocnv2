@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<section name="Workbench">
+	<section name="MavenProjectImportWizardPage">
+		<list key="rootDirectory">
+			<item value="C:\Users\Luis Henrique\Desktop\Nova pasta\silicon-main\estoque-rms-app\estoque-rms"/>
+			<item value="C:\Users\Luis Henrique\Desktop\Nova pasta\silicon-main"/>
+			<item value="C:\Users\Luis Henrique\Desktop\Projeto SIlicon"/>
+			<item value="C:\Users\Luis Henrique\Desktop\Projeto SIlicon\estoque-rms-app\estoque-rms"/>
+			<item value="C:\Users\Luis Henrique\Desktop\Programação\Projeto SIlicon\estoque-rms-app\estoque-rms"/>
+		</list>
+		<list key="projectNameTemplate">
+			<item value="new"/>
+			<item value="[artifactId]"/>
+			<item value="[artifactId]-TRUNK"/>
+			<item value="[artifactId]-[version]"/>
+			<item value="[groupId].[artifactId]"/>
+			<item value="[groupId].[artifactId]-[version]"/>
+			<item value="[name]"/>
+		</list>
+	</section>
+	<section name="org.eclipse.m2e.core.pom.overview">
+	</section>
+	<section name="org.eclipse.m2e.core.pom.dependencies">
+	</section>
+</section>

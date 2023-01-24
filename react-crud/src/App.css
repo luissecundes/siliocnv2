@@ -1,0 +1,22 @@
+.list {
+  text-align: left;
+  max-width: 1000px;
+  margin: auto;
+  padding: 50px;
+  transition: 600ms;
+}
+
+.submit-form {
+  max-width: 300px;
+  margin: auto;
+}
+
+.edit-form {
+  max-width: 300px;
+  margin: auto;
+}
+h1{
+  padding: 50px;
+
+
+}

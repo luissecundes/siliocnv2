@@ -1,0 +1,88 @@
+package br.com.treinamento.estoquerms.service;
+
+import java.util.List;
+
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+
+import br.com.treinamento.estoquerms.dto.ProductDTO;
+import br.com.treinamento.estoquerms.exceptions.CustomException;
+import br.com.treinamento.estoquerms.model.Product;
+import br.com.treinamento.estoquerms.repository.RepositoryProducts;
+
+@Service
+public class ProductServiceImpl implements ProductService {
+	private static Logger log = LoggerFactory.getLogger(ProductServiceImpl.class);
+
+	@Autowired
+	private RepositoryProducts repository;
+
+	@Override
+	public List<Product> list() throws CustomException {
+		try {
+			return repository.findAll();
+		} catch (Exception e) {
+			log.error("ERRO AO CONSULTAR TODOS OS PRODUTOS", e);
+			throw new CustomException("ERRO AO CONSULTAR TODOS OS PRODUTOS", e);
+		}
+	}
+
+	@Override
+	public Product getProduct(String name) throws CustomException {
+		try {
+			return repository.findByName(name);
+		} catch (Exception e) {
+			log.error("ERRO AO CONSULTAR PRODUTO POR NOME", e);
+			throw new CustomException("ERRO AO CONSULTAR PRODUTO POR NOME", e);
+		}
+
+	}
+
+	@Override
+	public Product insert(ProductDTO productDTO) throws CustomException {
+		try {
+			Product product = new Product(productDTO.getName(), productDTO.getDescription(), productDTO.getExpiration(),
+					productDTO.getAcquisition(), productDTO.getConsumption());
+			return repository.save(product);
+		} catch (Exception e) {
+			log.error("ERRO AO INSERIR PRODUTO", e);
+			throw new CustomException("ERRO AO INSERIR PRODUTO", e);
+		}
+	}
+
+	@Override
+	public Product update(ProductDTO productDTO, Integer id) throws CustomException {
+		try {
+			Product product = new Product(productDTO.getName(), productDTO.getDescription(), null, null, null);
+			product.setId(id);
+			return repository.save(product);
+		} catch (Exception e) {
+			log.error("ERRO AO ATUALIZAR PRODUTO", e);
+			throw new CustomException("ERROR AO ATUALIZAR PRODUTO", e);
+		}
+
+	}
+
+	@Override
+	public void delete(Integer id) throws CustomException {
+		try {
+			repository.deleteById(id);
+		} catch (Exception e) {
+			log.error("ERRO AO DELETAR PRODUTO", e);
+			throw new CustomException("ERRO AO DELETAR PRODUTO", e);
+		}
+	}
+
+	@Override
+	public Product getProduct(Integer id) throws CustomException {
+		try {
+			return repository.findById(id).orElseThrow();
+		} catch (Exception e) {
+			log.error("ERRO AO DELETAR PRODUTO", e);
+			throw new CustomException("ERRO AO DELETAR PRODUTO", e);
+		}
+	}
+
+}

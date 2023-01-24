@@ -1,0 +1,94 @@
+package br.com.treinamento.estoquerms.model;
+
+import java.util.Date;
+
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+
+@Entity
+@Table(name = "Products")
+@SequenceGenerator(name = "Products_sequence", sequenceName = "Products_sequence", allocationSize = 1)
+public class Product {
+
+	@Id
+	@GeneratedValue(generator = "Products_sequence")
+	@Column(name = "id_products", nullable = false)
+	private Integer id;
+	@Column(name = "products_name", nullable = false)
+	private String name;
+	@Column(name = "products_description", nullable = false)
+	private String description;
+	@Column(name = "date_expiration")
+	private Date expiration;
+	@Column(name = "date_acquisition")
+	private Date acquisition;
+	@Column(name = "final_date_consumption")
+	private Date consumption;
+
+	public Product() {
+		super();
+	}
+
+	public Product(String name, String description, Date expiration, Date acquisition, Date consumption) {
+		super();
+		this.name = name;
+		this.description = description;
+		this.expiration = expiration;
+		this.acquisition = acquisition;
+		this.consumption = consumption;
+	}
+
+	public Integer getId() {
+		return id;
+	}
+
+	public void setId(Integer id) {
+		this.id = id;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public void setName(String name) {
+		this.name = name;
+	}
+
+	public String getDescription() {
+		return description;
+	}
+
+	public void setDescription(String description) {
+		this.description = description;
+	}
+
+	public Date getExpiration() {
+		return expiration;
+	}
+
+	public void setExpiration(Date expiration) {
+		this.expiration = expiration;
+	}
+
+	public Date getAcquisition() {
+		return acquisition;
+	}
+
+	public void setAcquisition(Date acquisition) {
+		this.acquisition = acquisition;
+	}
+
+	public Date getConsumption() {
+		return consumption;
+	}
+
+	public void setConsumption(Date consumption) {
+		this.consumption = consumption;
+	}
+
+}

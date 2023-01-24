@@ -1,0 +1,60 @@
+package br.com.treinamento.estoquerms.controller;
+
+import java.util.List;
+
+import javax.websocket.server.PathParam;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
+import org.springframework.web.bind.annotation.CrossOrigin;
+import org.springframework.web.bind.annotation.DeleteMapping;
+import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.PutMapping;
+import org.springframework.web.bind.annotation.RequestBody;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.RestController;
+
+import br.com.treinamento.estoquerms.dto.ProductDTO;
+import br.com.treinamento.estoquerms.exceptions.CustomException;
+import br.com.treinamento.estoquerms.model.Product;
+import br.com.treinamento.estoquerms.service.ProductService;
+
+@CrossOrigin("*")
+
+@RestController
+@RequestMapping("/api")
+public class ControllerProduct {
+
+	@Autowired
+	private ProductService functions;
+
+	@GetMapping("/product")
+	public ResponseEntity<List<Product>> list() throws CustomException {
+		return ResponseEntity.ok(functions.list());
+	}
+
+	@GetMapping("/product/name/{name}")
+	public ResponseEntity<Product> porName(@RequestParam("name") String name) throws CustomException {
+		return ResponseEntity.ok(functions.getProduct(name));
+	}
+
+	@PostMapping("/product")
+	public ResponseEntity<Product> insert(@RequestBody ProductDTO product) throws CustomException {
+		return ResponseEntity.ok(functions.insert(product));
+	}
+
+	@PutMapping("/product/{id}")
+	public ResponseEntity<Product> update(@PathParam("id") Integer id, @RequestBody ProductDTO product)
+			throws CustomException {
+		return ResponseEntity.ok(functions.update(product, id));
+	}
+
+	@DeleteMapping("/product/{id}")
+	public ResponseEntity delete(@PathVariable Integer id) throws CustomException {
+		this.functions.delete(id);
+		return ResponseEntity.ok("");
+	}
+}
